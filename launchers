@@ -1,0 +1,10 @@
+#! /bin/bash
+function func {
+DZENLINE=()
+DZENLINE[0]="^ca(1, firefox ) Navegador de Internet ^ca()"
+DZENLINE[1]="^ca(1, thunar ) Gestor de Archivos ^ca()"
+DZENLINE[2]="^ca(1, gthumb $HOME/Pictures/ ) Galeria de Imagenes ^ca()"
+DZENLINE[3]="^ca(1, vlc ) Reproductor Multimedia ^ca()"
+echo "${DZENLINE[*]}"
+}
+func | dzen2 -y -1 -title-name dzenc -ta center -bg "#224466" -e 'entertitle=exec:;leavetitle=exec:' -p

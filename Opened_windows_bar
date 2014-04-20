@@ -1,0 +1,36 @@
+#! /bin/bash
+function func {
+i=0
+while true;
+do
+i=0
+CMD="wmctrl -ia "
+CMDx="wmctrl -ic "
+CROSS="^ib(1)x^p(-13)^co(17)^p(-2)"
+WINDOWS=($(wmctrl -xl | awk '{print$3}' | sed 's/\([0-Z]*\).[0-Z]*/\1/g' | tr "\n" " ")) 
+WINDOWS_ID=($(wmctrl -xl | awk '{print$1}' | tr "\n" " "))
+LENGTH="${#WINDOWS[*]}" 
+while [ "$i" -lt "$LENGTH" ]
+do
+	DZENLINE["$i"]="^ca(1, $CMD ${WINDOWS_ID["$i"]})${WINDOWS["$i"]}^ca() ^ca(1, $CMDx ${WINDOWS_ID["$i"]})$CROSS^ca() "
+	#the last value in this array is the focused window, it's highlighted
+	if [ "$i" -eq "$(($LENGTH-1))" ]; then DZENLINE["$i"]="^fg(#8888ff)${DZENLINE["$i"]}"; fi
+	i=$(($i+1))
+done
+i=0
+echo "$(date +%H:%M:%S) ${DZENLINE[*]}"
+DZENLINE=()
+sleep 1;
+done;
+}
+
+func | dzen2 -w 758  -title-name dzena -ta center -bg "#224466" -expand right -e '' 
+
+#install "wmctrl" from the official repositories
+#add this to make work "wmctrl" in xmonad
+#import XMonad.Hooks.EwmhDesktops
+#main = xmonad $ ewmh defaults
+#add this to your xmonad.hs file to make space in your screen
+# manageHook = manageDocks <+> [whatever you had before]]
+#myLayout =      avoidStruts $
+#		[whatever you had before]

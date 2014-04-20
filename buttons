@@ -1,0 +1,9 @@
+#! /bin/bash
+function func {
+DZENLINE=()
+DZENLINE[1]="^ca(1, devmon -u ) ExtraerPendrive ^ca()"
+DZENLINE[0]="^ca(1,  wicd-client) Wifi^ca()"
+DZENLINE[2]="^ca(1, systemctl poweroff -i ) ApagarPC ^ca()"
+echo "${DZENLINE[*]}"
+}
+func | dzen2 -x 758 -w 266 -title-name dzenb  -ta center -bg "#224466" -expand left -e 'entertitle=exec:;leavetitle=exec:' -p
