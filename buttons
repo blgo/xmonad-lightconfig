@@ -1,10 +1,11 @@
 #! /bin/bash
 function func {
+CROSS="^ib(1)x^p(-13)^co(17)^p(-2)"
 DZENLINE=()
 DZENLINE[1]="^ca(1, devmon -u ) ExtraerPendrive^ca()"
-DZENLINE[0]="^ca(1,  wicd-client) Wifi^ca()"
-DZENLINE[2]="^ca(1, urxvt -g +438+17 +sb -e alsamixer ) Audio^ca()"
+DZENLINE[0]="^ca(1,  wicd-client) Internet^ca()^ca(1, wmctrl -c wicd) $CROSS^ca()"
+DZENLINE[2]="^ca(1, urxvt -g +438+17 +sb -e alsamixer ) Audio^ca()^ca(1, wmctrl -c alsamixer) $CROSS^ca()"
 DZENLINE[3]="^ca(1, systemctl poweroff -i ) ApagarPC ^ca()"
 echo "${DZENLINE[*]}"
 }
-func | dzen2 -x 658 -w 366 -title-name dzenb  -ta center -bg "#224466" -expand left -e 'entertitle=exec:;leavetitle=exec:' -p
+func | dzen2 -x 650 -w 366 -title-name dzenb  -ta center -bg "#224466" -expand left -e '' -p
