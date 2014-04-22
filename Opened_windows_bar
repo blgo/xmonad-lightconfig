@@ -24,7 +24,7 @@ sleep 1;
 done;
 }
 
-func | dzen2 -w 758  -title-name dzena -ta center -bg "#224466" -expand right -e '' 
+func | dzen2 -w 658  -title-name dzena -ta center -bg "#224466" -expand right -e '' 
 
 #install "wmctrl" from the official repositories
 #add this to make work "wmctrl" in xmonad

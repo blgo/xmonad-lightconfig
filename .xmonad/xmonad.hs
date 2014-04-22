@@ -31,6 +31,7 @@ myManageHook = composeAll  . concat $
 	[  [ className =? "Xmessage"  --> doFloat ]
 	,  [ className =? "Zenity"  --> doFloat ]
 	,  [ title =? "Close Firefox"  --> doFloat ]
+	,  [ title =? "alsamixer"  --> doFloat ]
 	,  [ title =? "Gestor de Red Wicd"  --> doFloat ]
 	]
 
