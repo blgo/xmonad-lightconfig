@@ -1,0 +1,12 @@
+#!/bin/bash
+system_screen_resolution="$(xrandr | sed -n '/*/p' | awk '{print$1}')"
+xres="$(echo $system_screen_resolution | awk -F 'x' '{print$1}')"
+yres="$(echo $system_screen_resolution | awk -F 'x' '{print$2}')"
+y1="$(echo "$yres-130" | bc -l)"
+x1="$(echo "$xres*3/4"  | bc -l)"
+x2=${x1%.*}
+
+level="$(amixer | grep -A 5 PCM | grep "Front Left:" | awk '{print$5}' | sed -e 's/\[//'  -e 's/\%//'  -e 's/\]//' )"
+level2="$(echo "-($level-100)" | bc -l)"
+
+echo "^ib(1)^ro(15x100)^pa(0;4)^r(15x$level2)" | dzen2 -e '' -p 2 -w 20 -h 110 -x "$(($x2))" -y "$y1" -bg "#224466"
