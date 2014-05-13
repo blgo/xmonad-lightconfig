@@ -1,10 +1,14 @@
 #! /bin/bash
+system_screen_resolution="$(head -n 1 /sys/class/drm/card0/card0-DVI-I-1/modes | awk -F 'x' '{print$1}')"
+bar="$( echo "$system_screen_resolution*3/4"  | bc -l)"
+bar2=${bar%.*}
+
 function func {
 DZENLINE=()
-DZENLINE[0]="^ca(1, firefox ) Navegador de Internet ^ca()"
-DZENLINE[1]="^ca(1, thunar ) Gestor de Archivos ^ca()"
-DZENLINE[2]="^ca(1, gthumb $HOME/Pictures/ ) Galeria de Imagenes ^ca()"
+DZENLINE[0]="^ca(1, firefox ) Navegador de Internet ^ca()\n"
+DZENLINE[1]="^ca(1, thunar ) Gestor de Archivos ^ca()\n"
+DZENLINE[2]="^ca(1, mirage $HOME/Pictures/ ) Galeria de Imagenes ^ca()\n"
 DZENLINE[3]="^ca(1, vlc ) Reproductor Multimedia ^ca()"
-echo "${DZENLINE[*]}"
+echo -e "${DZENLINE[*]}"
 }
-func | dzen2 -y -1 -title-name dzenc -ta center -bg "#224466" -e 'entertitle=exec:;leavetitle=exec:' -p
+func | dzen2 -w $bar2 -m h -l 4  -fn lat2-10 -y -1 -title-name dzenc -ta center -bg "#224466" -p -sa center -e ''

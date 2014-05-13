@@ -1,0 +1,8 @@
+#!/bin/bash
+system_screen_resolution="$(head -n 1 /sys/class/drm/card0/card0-DVI-I-1/modes | awk -F 'x' '{print$1}')"
+bar="$( echo "$system_screen_resolution*3/4"  | bc -l)"
+bar2=${bar%.*}
+
+echo "^ib(1)^ro(15x100)^pa(0;3)^r(15x70)" | dzen2 -e '' -p 2 -w 20 -h 110 -x 843 -y 650 -bg "#224466"
+
+

@@ -96,7 +96,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 ------------------------------------------------------------------------
 
 myStartupHook = do
-        spawn "echo '^fg(yellow)Welcome to Xmonad !' | dzen2 -p 3 -fg '#a8a3f7' -bg '#3f3c6d' "
+        spawn ""
 
 ------------------------------------------------------------------------
 

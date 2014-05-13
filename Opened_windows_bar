@@ -1,4 +1,9 @@
 #! /bin/bash
+#system_screen_resolution xrandr 
+#system_screen_resolution="$(head -n 1 /sys/class/drm/card0/card0-DVI-I-1/modes | awk -F 'x' '{print$1}')"
+#bar="$( echo "$system_screen_resolution*3/4"  | bc -l)"
+#bar2=${bar%.*}
+
 function func {
 i=0
 while true;
@@ -6,8 +11,10 @@ do
 i=0
 CMD="wmctrl -ia "
 CMDx="wmctrl -ic "
-CROSS="^ib(1)x^p(-13)^co(17)^p(-2)"
-WINDOWS=($(wmctrl -xl | awk '{print$3}' | sed 's/\([0-Z]*\).[0-Z]*/\1/g' | tr "\n" " ")) 
+
+CROSS="^ib(1)x^p(-11)^co(15)^p(-2)"
+WINDOWS=($(wmctrl -l | awk '{print$4$5$6$7}' | sed 's/\(.............\)/\1/g' | tr "\n" " ")) 
+#WINDOWS=($(wmctrl -xl | awk '{print$3}' | sed 's/\([0-Z]*\).[0-Z]*/\1/g' | tr "\n" " ")) 
 WINDOWS_ID=($(wmctrl -xl | awk '{print$1}' | tr "\n" " "))
 LENGTH="${#WINDOWS[*]}" 
 while [ "$i" -lt "$LENGTH" ]
@@ -18,13 +25,13 @@ do
 	i=$(($i+1))
 done
 i=0
-echo "$(date +%H:%M:%S) ${DZENLINE[*]}"
+echo " ${DZENLINE[*]} "
 DZENLINE=()
 sleep 1;
 done;
 }
 
-func | dzen2 -w 650  -title-name dzena -ta center -bg "#224466" -expand right -e '' 
+func | dzen2 -title-name dzena -ta center -bg "#224466" -expand left -e '' -fn lat2-10 
 
 #install "wmctrl" from the official repositories
 #add this to make work "wmctrl" in xmonad
