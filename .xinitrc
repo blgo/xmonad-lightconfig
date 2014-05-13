@@ -9,5 +9,4 @@ $HOME/buttons &
 $HOME/Opened_windows_bar &
 $HOME/volume_controller &
 if [ -x /bin/wicd-client ]; then wicd-client -t & fi
-echo "ha funcionado!!!" | dzen2 -p 5
 sleep 0.1 && exec xmonad 
