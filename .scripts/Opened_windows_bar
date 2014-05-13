@@ -19,7 +19,7 @@ WINDOWS_ID=($(wmctrl -xl | awk '{print$1}' | tr "\n" " "))
 LENGTH="${#WINDOWS[*]}" 
 while [ "$i" -lt "$LENGTH" ]
 do
-	DZENLINE["$i"]="^ca(1, $CMD ${WINDOWS_ID["$i"]})${WINDOWS["$i"]}^ca() ^ca(1, $CMDx ${WINDOWS_ID["$i"]})$CROSS^ca() "
+	DZENLINE["$i"]="^ca(1, $CMD ${WINDOWS_ID["$i"]})${WINDOWS["$i"]}^ca() ^ca(1, $CMDx ${WINDOWS_ID["$i"]}) $CROSS^ca() "
 	#the last value in this array is the focused window, it's highlighted
 	if [ "$i" -eq "$(($LENGTH-1))" ]; then DZENLINE["$i"]="^fg(#8888ff)${DZENLINE["$i"]}"; fi
 	i=$(($i+1))
