@@ -9,4 +9,5 @@ $HOME/buttons &
 $HOME/Opened_windows_bar &
 $HOME/volume_controller &
 #wicd-client -t &
+#testestestest
 sleep 0.1 && exec xmonad 
