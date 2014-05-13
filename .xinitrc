@@ -8,6 +8,5 @@ $HOME/launchers &
 $HOME/buttons &
 $HOME/Opened_windows_bar &
 $HOME/volume_controller &
-#wicd-client -t &
-#testestestest
+if [ -x /bin/wicd-client ]; then wicd-client -t & fi
 sleep 0.1 && exec xmonad 
