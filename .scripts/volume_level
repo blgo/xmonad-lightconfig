@@ -1,5 +1,5 @@
 #!/bin/bash
-system_screen_resolution="$(xrandr | sed -n '/*/p' | awk '{print$1}')"
+system_screen_resolution="$1"
 xres="$(echo $system_screen_resolution | awk -F 'x' '{print$1}')"
 yres="$(echo $system_screen_resolution | awk -F 'x' '{print$2}')"
 y1="$(echo "$yres-130" | bc -l)"
