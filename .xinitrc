@@ -3,6 +3,7 @@ xsetroot -cursor_name left_ptr
 devmon &
 setxkbmap -layout es
 hsetroot -center $HOME/.background.jpg &
+git pull origin master
 $HOME/launchers &
 $HOME/buttons &
 $HOME/Opened_windows_bar &
