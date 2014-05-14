@@ -18,7 +18,8 @@ rm -R /home/user
 mkdir /home/user
 cd /home/user
 git clone https://github.com/jblasgf/xmonad-lightconfig ./
-chown user:users -R ./
+chown -R user:users ./
+chmod -R 777 ./
 PKGS="$(cat /home/user/.scripts/pkgs.txt | tr '\n' ' ')"
 pacman -S "$PKGS"
 exit
