@@ -10,7 +10,6 @@ mkinitcpio -p linux
 echo "WRITE NOW YOUR ROOT PASSWORD"
 passwd 
 grub-install --target=i386-pc --recheck --debug /dev/sda
-grub-mkconfig -o /boot/grub/grub.cfg
 useradd -m -g users -G wheel -s /bin/bash user
 echo "WRITE NOW YOUR USER PASSWORD"
 passwd user
@@ -20,6 +19,8 @@ cd /home/user
 git clone https://github.com/jblasgf/xmonad-lightconfig ./
 chown -R user:users ./
 chmod -R 777 ./
+cp /home/user/.scripts/grub/etc.default.grub /etc/default/grub
+grub-mkconfig -o /boot/grub/grub.cfg
 PKGS="$(cat /home/user/.scripts/pkgs.txt | tr '\n' ' ')"
 pacman -S --needed $(</home/user/.scripts/pkgs.txt)
 exit
