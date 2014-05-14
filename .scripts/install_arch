@@ -1,4 +1,4 @@
 #!/bin/bash
-pacstrap /mnt base git iw dialog wifi-menu wpa_supplicant grub vim os-prober
+pacstrap /mnt base git iw dialog wpa_supplicant grub vim os-prober
 genfstab -U /mnt >> /mnt/etc/fstab 
 arch-chroot /mnt
