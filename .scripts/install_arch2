@@ -17,8 +17,8 @@ passwd user
 rm -R /home/user
 mkdir /home/user
 cd /home/user
-git clone https://github.com/jblasgf/xmonad-lightconfig
+git clone https://github.com/jblasgf/xmonad-lightconfig ./
 chown user:users -R ./
-PKGS="$(cat /home/users/.scripts/pkgs.txt | tr '\n' ' ')"
+PKGS="$(cat /home/user/.scripts/pkgs.txt | tr '\n' ' ')"
 pacman -S "$PKGS"
 exit
