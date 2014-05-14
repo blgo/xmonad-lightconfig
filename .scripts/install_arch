@@ -1,5 +1,7 @@
 #!/bin/bash
+read -p "Write the number for the /dev/sdaX partition" x
+parted /dev/sda toggle '$x' boot
 pacstrap /mnt base git iw dialog wpa_supplicant grub vim os-prober
 genfstab -U /mnt >> /mnt/etc/fstab 
-cp ./xmonad-lightconfig/.scripts/install_arch2 /mnt/root/
+cp /root/xmonad-lightconfig/.scripts/install_arch2 /mnt/root/
 arch-chroot /mnt
