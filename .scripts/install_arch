@@ -2,3 +2,4 @@
 pacstrap /mnt base git iw dialog wpa_supplicant grub vim os-prober
 genfstab -U /mnt >> /mnt/etc/fstab 
 arch-chroot /mnt
+cp ./xmonad-lightconfig/.scripts/install_arch2 /mnt/root/

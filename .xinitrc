@@ -9,5 +9,5 @@ buttons &
 Opened_windows_bar &
 volume_controller &
 if [ -x /bin/wicd-client ]; then wicd-client -t & fi
-(sleep 200; git pull origin master)&
+(sleep 200; cd $HOME; git pull origin master) &
 sleep 0.1 && exec xmonad 
