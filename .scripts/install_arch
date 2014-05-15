@@ -1,5 +1,5 @@
 #!/bin/bash
-read -p "Write the number for the /dev/sdaX partition" x
+read -p "Write the number for the boot (/dev/sdaX) partition: " x
 parted /dev/sda toggle '$x' boot
 pacstrap /mnt base git iw dialog wpa_supplicant grub vim os-prober
 genfstab -U /mnt >> /mnt/etc/fstab 
