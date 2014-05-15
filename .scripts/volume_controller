@@ -1,6 +1,6 @@
 #!/bin/bash
 
-system_screen_resolution="$(xrandr | sed -n '/*/p' | awk '{print$1}')"
+system_screen_resolution="$(xrandr | sed -n '/*/p' | awk '{print$1}' | sed -n '1 p')"
 xres="$(echo $system_screen_resolution | awk -F 'x' '{print$1}')"
 yres="$(echo $system_screen_resolution | awk -F 'x' '{print$2}')"
 x1="$(echo "$xres*3/4"  | bc -l)"
