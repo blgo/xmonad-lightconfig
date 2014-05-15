@@ -25,6 +25,6 @@ pacman -S --needed --noconfirm $(</home/user/.scripts/pkgs.txt)
 cp /home/user/.scripts/init_services/bash_profile_root /root/.bash_profile
 chmod 777 /root/.bash_profile
 chmod 777 /home/user/.scripts/init_services/services_first_run
-cp -R /home/user/.scripts/init_services/getty\@tty1.service.d /etc/system/systemd/
+cp -R /home/user/.scripts/init_services/getty\@tty1.service.d /etc/systemd/system/
 systemctl enable getty\@tty1.service
 exit
