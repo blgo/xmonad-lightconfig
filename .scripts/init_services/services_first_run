@@ -19,5 +19,5 @@ systemctl enable getty\@tty1.service
 systemctl enable pacman-update.service
 read -p "press enter to reset services" 
 rm /root/.bash_profile
-systemctl enable /etc/systemd/system/getty\@tty1.service
-systemctl stop /etc/systemd/system/getty\@tty1.service
+systemctl enable getty\@tty1.service
+systemctl stop getty\@tty1.service
