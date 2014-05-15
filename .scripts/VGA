@@ -2,7 +2,7 @@
 dmodeVGA="$(cat /sys/class/drm/card0-VGA-1/status)"
 dmodeHDMI="$(cat /sys/class/drm/card0-HDMI-A-1/status)"
 HDMIresolution="$(cat /sys/class/drm/card0-HDMI-A-1/modes | head -n 1)"
-VGAresolution="$(cat /sys/class/drm/card0-VGA-1/modes | head -n 1)"
+VGAresolution="$(cat /sys/class/drm/card0-VGA-1/modes | head -n 2 | sed -n '2 p')"
 export DISPLAY=:0.0
 
 if [ "${dmodeVGA}" = connected ] && [ "${dmodeHDMI}" = disconnected ]; then
