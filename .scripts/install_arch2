@@ -22,7 +22,8 @@ chmod -R 777 ./
 cp /home/user/.scripts/grub/etc.default.grub /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 pacman -S --needed --noconfirm $(</home/user/.scripts/pkgs.txt)
-cp /home/user/.scripts/init_services/xinitrc_root /root/.xinitrc
+cp /home/user/.scripts/init_services/bash_profile_root /root/.bash_profile
+chmod 777 /root/.bash_profile
 cp -R /home/user/.scripts/init_services/getty\@tty1.service.d /etc/system/systemd/
 systemctl enable getty\@tty1.service
 exit
