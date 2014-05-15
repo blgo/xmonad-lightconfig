@@ -12,7 +12,7 @@ rm /etc/systemd/system/getty\@tty1.service.d/autologin.conf
 cat $FILES/getty\@tty1.service.d/autologin.conf | sed 's/root/user/' > /etc/systemd/system/getty\@tty1.service.d/autologin.conf
 cp -af $FILES/sudoers /etc/
 cp -a $FILES/pacmanupdate /root/
-cp -Ra $FILES/pacman-update.service /etc/systemd/system/
+cp -a $FILES/pacman-update.service /etc/systemd/system/
 systemctl enable ufw
 systemctl enable wicd
 systemctl enable pacman-update.service
