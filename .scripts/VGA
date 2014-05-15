@@ -24,4 +24,4 @@ echo	"defaults.ctl.card 0" >> $HOME/.asoundrc
 	xrandr --output LVDS --off
 	xrandr --output VGA-0 --off
 fi
-notify-send "VGA -- $dmodeVGA /// HDMI -- $dmodeHDMI" 
+echo "VGA -- $dmodeVGA /// HDMI -- $dmodeHDMI" | dzen2 -p 2
