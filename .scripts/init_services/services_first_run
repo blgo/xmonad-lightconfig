@@ -9,7 +9,7 @@ ufw limit SSH
 ufw enable
 systemctl disable getty\@tty1.service
 rm -R /etc/systemd/system/getty\@tty1.service.d/autologin.conf
-cat $FILES/getty\@tty1.service.d/autologin.conf | sed 's/root/user/' > /etc/systemd/system/
+cat $FILES/getty\@tty1.service.d/autologin.conf | sed 's/root/user/' > /etc/systemd/system/getty\@tty1.service.d/autologin.conf
 cp -f $FILES/sudoers /etc/
 cp $FILES/pacmanupdate /root/
 cp $FILES/pacman-update.service /etc/systemd/system/
