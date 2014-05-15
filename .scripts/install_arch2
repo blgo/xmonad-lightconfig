@@ -22,5 +22,5 @@ chmod -R 777 ./
 cp /home/user/.scripts/grub/etc.default.grub /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 PKGS="$(cat /home/user/.scripts/pkgs.txt | tr '\n' ' ')"
-pacman -S --needed $PKGS
+pacman -S --needed --noconfirm"$PKGS"
 exit
