@@ -14,7 +14,7 @@ if [ -n "$VIDEO_DIR_VGA" ]; then
 	fi
 fi
 
-VIDEO_DIR_HMDI="$(ls $VIDEO_DIR | grep HDMI)"
+VIDEO_DIR_HDMI="$(ls $VIDEO_DIR | grep HDMI)"
 if [ -n "$VIDEO_DIR_HDMI" ]; then 
 	dmodeHDMI="$(cat $VIDEO_DIR$VIDEO_DIR_HDMI/status)"
 	HDMIresolution="$(cat $VIDEO_DIR$VIDEO_DIR_HDMI/modes | head -n 1)"

@@ -1,7 +1,8 @@
 #!/bin/bash
 echo "archuser" > /etc/hostname
 ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtime
-cat /etc/locale.gen | sed 's/#es_ES ISO-8859-1/es_ES ISO-8859-1/' > /etc/locale.gen
+sed 's/#es_ES ISO-8859-1/es_ES ISO-8859-1/' /etc/locale.gen > /etc/locale.gen2
+cp -a /etc/locale.gen2 /etc/locale.gen
 locale-gen
 echo "LANG="es_ES.ISO8859-1"" > /etc/locale.conf
 echo "KEYMAP=es" > /etc/vconsole.conf
