@@ -3,22 +3,21 @@ VIDEO_DIR="/sys/class/drm/"
 if [ -d "$VIDEO_DIR" ]; then
 
 VIDEO_DIR_VGA="$(ls $VIDEO_DIR | grep VGA)"
-if [ -n $VIDEO_DIR_VGA ]; then 
-dmodeVGA="$(cat $VIDEO_DIR$VIDEO_DIR_VGA/status)"
-VGAresolution="$(cat $VIDEO_DIR$VIDEO_DIR_VGA/modes | head -n 2 | sed -n '2 p')"
-fi
-
-VIDEO_DIR_VGA="$(ls $VIDEO_DIR | grep DVI)"
-if [ -n $VIDEO_DIR_VGA ]; then 
-dmodeVGA="$(cat $VIDEO_DIR$VIDEO_DIR_VGA/status)"
-VGAresolution="$(cat $VIDEO_DIR$VIDEO_DIR_VGA/modes | head -n 2 | sed -n '2 p')"
+if [ -n "$VIDEO_DIR_VGA" ]; then 
+	dmodeVGA="$(cat $VIDEO_DIR$VIDEO_DIR_VGA/status)"
+	VGAresolution="$(cat $VIDEO_DIR$VIDEO_DIR_VGA/modes | head -n 2 | sed -n '2 p')"
+	else
+	VIDEO_DIR_VGA="$(ls $VIDEO_DIR | grep DVI)"
+	if [ -n "$VIDEO_DIR_VGA" ]; then 
+		dmodeVGA="$(cat $VIDEO_DIR$VIDEO_DIR_VGA/status)"
+		VGAresolution="$(cat $VIDEO_DIR$VIDEO_DIR_VGA/modes | head -n 2 | sed -n '2 p')"
+	fi
 fi
 
 VIDEO_DIR_HMDI="$(ls $VIDEO_DIR | grep HDMI)"
-if [ -n $VIDEO_DIR_HDMI ]; then 
-dmodeHDMI="$(cat $VIDEO_DIR$VIDEO_DIR_HDMI/status)"
-HDMIresolution="$(cat $VIDEO_DIR$VIDEO_DIR_HDMI/modes | head -n 1)"
-
+if [ -n "$VIDEO_DIR_HDMI" ]; then 
+	dmodeHDMI="$(cat $VIDEO_DIR$VIDEO_DIR_HDMI/status)"
+	HDMIresolution="$(cat $VIDEO_DIR$VIDEO_DIR_HDMI/modes | head -n 1)"
 fi
 
 	if [ "${dmodeVGA}" = connected ] && [ "${dmodeHDMI}" = disconnected ]; then
