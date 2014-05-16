@@ -1,26 +1,42 @@
 #!/bin/sh
-dmodeVGA="$(cat /sys/class/drm/card0-VGA-1/status)"
-dmodeHDMI="$(cat /sys/class/drm/card0-HDMI-A-1/status)"
-HDMIresolution="$(cat /sys/class/drm/card0-HDMI-A-1/modes | head -n 1)"
-VGAresolution="$(cat /sys/class/drm/card0-VGA-1/modes | head -n 2 | sed -n '2 p')"
+VIDEO_DIR="/sys/class/drm/"
+if [ -d "$VIDEO_DIR" ]; then
 
-if [ "${dmodeVGA}" = connected ] && [ "${dmodeHDMI}" = disconnected ]; then
-	xrandr --output VGA-0 --mode "$VGAresolution" --auto --output LVDS --off --output HDMI-0 --off
-	echo	"defaults.pcm.card 0" > $HOME/.asoundrc
-	#0 will enable VGA audio output
-	echo	"defaults.pcm.device 0" >> $HOME/.asoundrc
+VIDEO_DIR_VGA="$(ls $VIDEO_DIR | grep VGA)"
+if [ -n $VIDEO_DIR_VGA ]; then 
+dmodeVGA="$(cat $VIDEO_DIR$VIDEO_DIR_VGA/status)"
+VGAresolution="$(cat $VIDEO_DIR$VIDEO_DIR_VGA/modes | head -n 2 | sed -n '2 p')"
+fi
+
+VIDEO_DIR_VGA="$(ls $VIDEO_DIR | grep DVI)"
+if [ -n $VIDEO_DIR_VGA ]; then 
+dmodeVGA="$(cat $VIDEO_DIR$VIDEO_DIR_VGA/status)"
+VGAresolution="$(cat $VIDEO_DIR$VIDEO_DIR_VGA/modes | head -n 2 | sed -n '2 p')"
+fi
+
+VIDEO_DIR_HMDI="$(ls $VIDEO_DIR | grep HDMI)"
+if [ -n $VIDEO_DIR_HDMI ]; then 
+dmodeHDMI="$(cat $VIDEO_DIR$VIDEO_DIR_HDMI/status)"
+HDMIresolution="$(cat $VIDEO_DIR$VIDEO_DIR_HDMI/modes | head -n 1)"
+
+fi
+
+	if [ "${dmodeVGA}" = connected ] && [ "${dmodeHDMI}" = disconnected ]; then
+		xrandr --output VGA-0 --mode "$VGAresolution" --auto --output LVDS --off --output HDMI-0 --off
+		echo	"defaults.pcm.card 0" > $HOME/.asoundrc
+		#0 will enable VGA audio output
+		echo	"defaults.pcm.device 0" >> $HOME/.asoundrc
+		echo	"defaults.ctl.card 0" >> $HOME/.asoundrc
+	fi
+
+	if [ "${dmodeVGA}" = disconnected ] && [ "${dmodeHDMI}" = connected ]; then
+	echo	"defaults.pcm.card 1" > $HOME/.asoundrc
+	#3 will enable HDMI audio output
+	echo	"defaults.pcm.device 3" >> $HOME/.asoundrc
 	echo	"defaults.ctl.card 0" >> $HOME/.asoundrc
+		xrandr --output HDMI-0 --mode "1024x768" --auto
+		xrandr --output LVDS --off
+		xrandr --output VGA-0 --off
+	fi
+	(echo "$VIDEO_DIR_VGA  $dmodeVGA  $VIDEO_DIR_HDMI $dmodeHDMI" | dzen2 -p 2 -bg "#224466") &
 fi
-
-if [ "${dmodeVGA}" = disconnected ] && [ "${dmodeHDMI}" = connected ]; then
-
-echo	"defaults.pcm.card 1" > $HOME/.asoundrc
-#3 will enable HDMI audio output
-echo	"defaults.pcm.device 3" >> $HOME/.asoundrc
-echo	"defaults.ctl.card 0" >> $HOME/.asoundrc
-
-	xrandr --output HDMI-0 --mode "1024x768" --auto
-	xrandr --output LVDS --off
-	xrandr --output VGA-0 --off
-fi
-(echo "VGA -- $dmodeVGA /// HDMI -- $dmodeHDMI" | dzen2 -p 2 -bg "#224466") &
