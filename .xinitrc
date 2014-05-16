@@ -1,14 +1,14 @@
 #!/bin/bash
+if [ -x /bin/wicd-client ]; then wicd-client -t & fi
+(sleep 200; cd $HOME; git pull origin master) &
 xsetroot -cursor_name left_ptr
 devmon &
 setxkbmap -layout es
-hsetroot -center $HOME/.background.jpg &
 export PATH+=:$HOME/.scripts
-(sleep 0.5; VGA) &
-(sleep 2; launchers) &
-(sleep 2; buttons) &
-(sleep 2; Opened_windows_bar) &
+VGA
+hsetroot -center $HOME/.background.jpg &
+launchers &
+buttons &
+Opened_windows_bar &
 volume_controller &
-if [ -x /bin/wicd-client ]; then wicd-client -t & fi
-(sleep 200; cd $HOME; git pull origin master) &
 exec xmonad 
