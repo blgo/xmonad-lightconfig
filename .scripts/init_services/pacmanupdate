@@ -1,0 +1,4 @@
+#! /bin/bash
+sleep 200
+pacman -Syu --noconfirm
+pacman -Sc --noconfirm

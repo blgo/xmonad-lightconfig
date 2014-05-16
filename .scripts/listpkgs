@@ -1,2 +1,3 @@
 #! /bin/bash
-pacman -Qqe > $HOME/.scripts/pkgs.txt
+pacman -Qqen > $HOME/.scripts/pkgs.txt
+pacman -Qemq > $HOME/.scripts/pkgs.AUR.txt

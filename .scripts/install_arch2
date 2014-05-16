@@ -1,0 +1,46 @@
+#!/bin/bash
+echo "archuser" > /etc/hostname
+ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtime
+cat /etc/locale.gen | sed 's/#es_ES ISO-8859-1/es_ES ISO-8859-1/' > /etc/locale.gen
+locale-gen
+echo "LANG="es_ES.ISO8859-1"" > /etc/locale.conf
+echo "KEYMAP=es" > /etc/vconsole.conf
+mkinitcpio -p linux
+grub-install --target=i386-pc --recheck --debug /dev/sda
+useradd -m -g users -G wheel -s /bin/bash user
+rm -R /home/user
+mkdir /home/user
+cd /home/user
+git clone https://github.com/jblasgf/xmonad-lightconfig ./
+chown -R user:users ./
+cp -a /home/user/.scripts/grub/etc.default.grub /etc/default/grub
+grub-mkconfig -o /boot/grub/grub.cfg
+
+pacman -S --needed --noconfirm $(</home/user/.scripts/pkgs.txt)
+cp -Ra /home/user/.scripts/init_services/getty\@tty1.service.d /etc/systemd/system/
+systemctl enable getty\@tty1.service
+FILES="/home/user/.scripts/init_services"
+ufw default deny
+ufw allow from 192.168.0.0/24
+ufw allow Deluge
+#ufw has the ability to deny connections from an IP address that has attempted to initiate 6 or more connections in the last 30 seconds. Users should consider using this option for services such as sshd.
+ufw allow SSH
+ufw limit SSH
+ufw enable
+cp -a $FILES/sudoers /etc/
+cp -a $FILES/pacmanupdate /root/
+cp -a $FILES/pacman-update.service /etc/systemd/system/
+chown root:root /etc/sudoers
+chown root:root /etc/systemd/system/pacman-update.service
+chown root:root /root/pacmanupdate
+#This doesn't work on chroot, should be loaded on system
+#systemctl enable ufw
+#systemctl enable wicd
+#systemctl enable pacman-update.service
+#systemctl enable getty\@tty1.service.d
+#systemctl disable netctl
+#systemctl disable dhcpcd
+echo "WRITE NOW YOUR USER PASSWORD"
+passwd user
+echo "WRITE NOW YOUR ROOT PASSWORD"
+passwd 
