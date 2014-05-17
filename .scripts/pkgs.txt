@@ -174,3 +174,5 @@ xorg-xwd
 xorg-xwininfo
 xorg-xwud
 zenity
+lm_sensors
+ntp

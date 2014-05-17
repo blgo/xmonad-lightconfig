@@ -9,7 +9,7 @@ VGA
 hsetroot -center $HOME/.background.jpg &
 launchers &
 buttons &
-((while true; do date +%T; sleep 60; done;) | dzen2 -bg "#224466" -e '' -expand right) &
+((while true; do date +%H:%M; sleep 60; done;) | dzen2 -bg "#224466" -e '' -expand right) &
 Opened_windows_bar &
 volume_controller &
 exec xmonad 
