@@ -17,7 +17,7 @@ fi
 VIDEO_DIR_HDMI="$(ls $VIDEO_DIR | grep HDMI)"
 if [ -n "$VIDEO_DIR_HDMI" ]; then 
 	dmodeHDMI="$(cat $VIDEO_DIR$VIDEO_DIR_HDMI/status)"
-	HDMIresolution="$(cat $VIDEO_DIR$VIDEO_DIR_HDMI/modes | head -n 1)"
+	HDMIresolution="$(cat $VIDEO_DIR$VIDEO_DIR_HDMI/modes | grep "720" | head -n 1)"
 fi
 
 	if [ "${dmodeVGA}" = connected ] && [ "${dmodeHDMI}" = disconnected ]; then
@@ -33,7 +33,7 @@ fi
 	#3 will enable HDMI audio output
 	echo	"defaults.pcm.device 3" >> $HOME/.asoundrc
 	echo	"defaults.ctl.card 0" >> $HOME/.asoundrc
-		xrandr --output HDMI-0 --mode "1024x768" --auto
+		xrandr --output HDMI-0 --mode "$HDMIresolution" --auto
 		xrandr --output LVDS --off
 		xrandr --output VGA-0 --off
 	fi
