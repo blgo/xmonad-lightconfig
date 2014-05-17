@@ -17,7 +17,7 @@ fi
 VIDEO_DIR_HDMI="$(ls $VIDEO_DIR | grep HDMI)"
 if [ -n "$VIDEO_DIR_HDMI" ]; then 
 	dmodeHDMI="$(cat $VIDEO_DIR$VIDEO_DIR_HDMI/status)"
-	HDMIresolution="$(cat $VIDEO_DIR$VIDEO_DIR_HDMI/modes | grep "720" | head -n 1)"
+	HDMIresolution="$(cat $VIDEO_DIR$VIDEO_DIR_HDMI/modes | grep "1360" | head -n 1)"
 fi
 
 	if [ "${dmodeVGA}" = connected ] && [ "${dmodeHDMI}" = disconnected ]; then
