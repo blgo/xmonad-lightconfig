@@ -1,0 +1,9 @@
+#!/bin/bash
+killall dzen2
+VGA
+volume_controller & 
+launchers &
+buttons &
+Opened_windows_bar &
+((while true; do date +%H:%M; sleep 60; done;) | dzen2 -bg "#224466" -e '' -expand right) &
+
