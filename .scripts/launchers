@@ -7,10 +7,12 @@ x2=${x1%.*}
 
 function func {
 DZENLINE=()
-DZENLINE[0]="^ca(1, firefox ) Navegador de Internet ^ca()\n"
-DZENLINE[1]="^ca(1, thunar ) Gestor de Archivos ^ca()\n"
+DZENLINE[0]="^ca(1, xdotool keydown Alt key f keyup Alt ) Navegador de Internet ^ca()\n"
+DZENLINE[1]="^ca(1, xdotool keydown Alt key a keyup Alt ) Gestor de Archivos ^ca()\n"
 DZENLINE[2]="^ca(1, mirage $HOME/Pictures/ ) Galeria de Imagenes ^ca()\n"
-DZENLINE[3]="^ca(1, vlc ) Reproductor Multimedia ^ca()"
+DZENLINE[3]="^ca(1, vlc ) Reproductor Multimedia\n ^ca()"
+DZENLINE[4]="^ca(1, gimp ) Editor de Imagenes\n ^ca()"
+DZENLINE[5]="^ca(1, libreoffice ) LibreOffice ^ca()"
 echo -e "${DZENLINE[*]}"
 }
-func | dzen2 -w $x2 -m h -l 4  -fn lat2-10 -y $yres -title-name dzenc -ta center -bg "#224466" -p -sa center -e ''
+func | dzen2 -w $x2 -m h -l 6  -fn lat2-10 -y $yres -title-name dzenc -ta center -bg "#224466" -p -sa center 
