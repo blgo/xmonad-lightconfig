@@ -155,3 +155,11 @@ reflector
 firefox-i18n-es-es
 hunspell-en
 hunspell-es
+xdotool
+libreoffice-base
+libreoffice-writer
+libreoffice-math
+libreoffice-calc
+libreoffice-es
+libreoffice-en-US
+gimp
