@@ -25,6 +25,7 @@ import qualified Data.Map as M
 import XMonad.Layout.PerWorkspace
 import XMonad.Hooks.DynamicLog
 
+import XMonad.Actions.WindowGo
 
 import XMonad.Hooks.EwmhDesktops
 myManageHook = composeAll  . concat $
@@ -87,6 +88,8 @@ inskeys conf@(XConfig {modMask = modm}) =
 		, ((0            , 0x1008ff13), spawn "amixer -q set Master unmute & amixer -q set LFE unmute & amixer -q set PCM 7%+")
 		, ((0            , 0x1008ff12), spawn "amixer -q set Master toggle & amixer -q set LFE toggle")
 		,((mod1Mask,           xK_u ), spawn "devmon -u")
+		,((modm 	, xK_f), runOrRaiseMaster "firefox" (className =? "Firefox"))
+		,((modm 	, xK_a), runOrRaiseMaster "thunar" (className =? "Thunar"))
 		,((mod1Mask,           xK_s ), spawn "plug_monitor")
 		,((modm,	xK_b     ), sendMessage ToggleStruts)
 		,((mod1Mask,             0xf1), spawn "ping -W 2 -c 5 www.google.es | dzen2")
