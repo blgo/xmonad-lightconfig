@@ -30,9 +30,9 @@ import XMonad.Hooks.EwmhDesktops
 myManageHook = composeAll  . concat $
 	[  [ className =? "Xmessage"  --> doFloat ]
 	,  [ className =? "Zenity"  --> doFloat ]
-	,  [ title =? "Close Firefox"  --> doFloat ]
-	,  [ title =? "alsamixer"  --> doFloat ]
-	,  [ title =? "Gestor de Red Wicd"  --> doFloat ]
+	,  [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]
+	,  [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]
+	,  [(className =? "Wicd-client.py" <&&> resource =? "wicd-client.py") --> doFloat]
 	]
 
 myTerminal      = "urxvt"
