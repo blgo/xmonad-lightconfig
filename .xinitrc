@@ -12,4 +12,5 @@ buttons &
 ((while true; do date +%H:%M; sleep 60; done;) | dzen2 -bg "#224466" -e '' -expand right) &
 Opened_windows_bar &
 volume_controller &
+zenity --warning --text="Hola Fran\nTienes que instalar un Programa:\nsudo pacman -S xdotool\n Instalalo o de lo contrario\n los botones de abajo no funcionarán."
 exec xmonad 
