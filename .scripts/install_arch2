@@ -36,6 +36,7 @@ systemctl enable pacman-update.service
 systemctl enable getty\@tty1.service.d
 systemctl disable netctl
 systemctl disable dhcpcd
+sed -i 's/single-window-mode no/single-window-mode yes/' /home/user/.gimp-2.8/sessionrc
 echo "WRITE NOW YOUR USER PASSWORD"
 passwd user
 echo "WRITE NOW YOUR ROOT PASSWORD"

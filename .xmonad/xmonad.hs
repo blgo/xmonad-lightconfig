@@ -31,6 +31,7 @@ import XMonad.Hooks.EwmhDesktops
 myManageHook = composeAll  . concat $
 	[  [ className =? "Xmessage"  --> doFloat ]
 	,  [ className =? "Zenity"  --> doFloat ]
+	,  [ className =? "Gimp"  --> doFloat ]
 	,  [ className =? "Plugin-container"  --> doFloat ]
 	,  [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]
 	,  [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]

@@ -162,3 +162,8 @@ libreoffice-calc
 libreoffice-es
 libreoffice-en-US
 gimp
+hunspell
+hunspell-en
+hyphen
+hyphen-es
+hyphen-en
