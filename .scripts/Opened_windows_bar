@@ -4,6 +4,10 @@
 #bar="$( echo "$system_screen_resolution*3/4"  | bc -l)"
 #bar2=${bar%.*}
 
+function specialchars {
+export TITLE="$(echo "$1" | sed -e 's/á/a/' -e 's/é/e/' -e 's/í/i/'  -e 's/ó/o/' -e 's/ú/u/' -e 's/ñ/n/')"
+}
+
 function func {
 i=0
 while true;
@@ -13,13 +17,15 @@ CMD="wmctrl -ia "
 CMDx="wmctrl -ic "
 
 CROSS="^ib(1)x^p(-11)^co(15)^p(-2)"
-WINDOWS=($(wmctrl -l | awk '{print$4$5$6$7}' | sed 's/\(.............\)/\1/g' | tr "\n" " ")) 
-#WINDOWS=($(wmctrl -xl | awk '{print$3}' | sed 's/\([0-Z]*\).[0-Z]*/\1/g' | tr "\n" " ")) 
+WINDOWS=($(wmctrl -l | awk '{print$4$5$6}' | tr "\n" " ")) 
+WINDOWS2=($(wmctrl -xl | awk '{print$3}' | sed 's/\([0-Z]*\).[0-Z]*/\1/g' | tr "\n" " ")) 
 WINDOWS_ID=($(wmctrl -xl | awk '{print$1}' | tr "\n" " "))
 LENGTH="${#WINDOWS[*]}" 
 while [ "$i" -lt "$LENGTH" ]
 do
-	DZENLINE["$i"]="^ca(1, $CMD ${WINDOWS_ID["$i"]})${WINDOWS["$i"]}^ca() ^ca(1, $CMDx ${WINDOWS_ID["$i"]}) $CROSS^ca() "
+	
+	specialchars "${WINDOWS["$i"]}"
+	DZENLINE["$i"]="^ca(1, $CMD ${WINDOWS_ID["$i"]})${WINDOWS2["$i"]}-$TITLE^ca() ^ca(1, $CMDx ${WINDOWS_ID["$i"]}) $CROSS^ca() "
 	#the last value in this array is the focused window, it's highlighted
 	if [ "$i" -eq "$(($LENGTH-1))" ]; then 
 		SWAP="${DZENLINE["$i"]}"
