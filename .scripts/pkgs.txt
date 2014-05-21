@@ -152,3 +152,6 @@ zenity
 lm_sensors
 ntp
 reflector
+firefox-i18n-es-es
+hunspell-en
+hunspell-es
