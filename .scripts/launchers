@@ -7,8 +7,8 @@ x2=${x1%.*}
 
 function func {
 DZENLINE=()
-DZENLINE[0]="^ca(1, xdotool keydown Alt key f keyup Alt ) Navegador de Internet ^ca()\n"
-DZENLINE[1]="^ca(1, xdotool keydown Alt key a keyup Alt ) Gestor de Archivos ^ca()\n"
+DZENLINE[0]="^ca(1, firefox_script ) Navegador de Internet ^ca()\n"
+DZENLINE[1]="^ca(1, thunar_script ) Gestor de Archivos ^ca()\n"
 DZENLINE[2]="^ca(1, mirage $HOME/Pictures/ ) Galeria de Imagenes ^ca()\n"
 DZENLINE[3]="^ca(1, vlc ) Reproductor Multimedia\n ^ca()"
 DZENLINE[4]="^ca(1, gimp ) Editor de Imagenes\n ^ca()"

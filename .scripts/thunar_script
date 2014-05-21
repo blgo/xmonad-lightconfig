@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ -z "$(wmctrl -xl | grep thunar)" ]
+then
+thunar
+else
+wmctrl -xa Thunar 
+fi
