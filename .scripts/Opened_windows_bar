@@ -27,10 +27,10 @@ do
 	specialchars "${WINDOWS["$i"]}"
 	DZENLINE["$i"]="^ca(1, $CMD ${WINDOWS_ID["$i"]})${WINDOWS2["$i"]}-$TITLE^ca() ^ca(1, $CMDx ${WINDOWS_ID["$i"]}) $CROSS^ca() "
 	#the last value in this array is the focused window, it's highlighted
-	if [ "$i" -eq "$(($LENGTH-1))" ]; then 
-		SWAP="${DZENLINE["$i"]}"
-		DZENLINE["$i"]="^fg(#8888ff)$SWAP"
-	fi
+	#if [ "$i" -eq "$(($LENGTH-1))" ]; then 
+	#	SWAP="${DZENLINE["$i"]}"
+	#	DZENLINE["$i"]="^fg(#8888ff)$SWAP"
+	#fi
 	i=$(($i+1))
 done
 i=0
