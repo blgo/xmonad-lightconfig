@@ -30,6 +30,7 @@ import XMonad.Hooks.EwmhDesktops
 myManageHook = composeAll  . concat $
 	[  [ className =? "Xmessage"  --> doFloat ]
 	,  [ className =? "Zenity"  --> doFloat ]
+	,  [ className =? "Plugin-container"  --> doFloat ]
 	,  [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]
 	,  [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]
 	,  [(className =? "Wicd-client.py" <&&> resource =? "wicd-client.py") --> doFloat]
