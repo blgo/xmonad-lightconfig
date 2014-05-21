@@ -1,0 +1,8 @@
+#!/bin/bash
+ufw default deny
+ufw allow from 192.168.0.0/24
+ufw allow Deluge
+#ufw has the ability to deny connections from an IP address that has attempted to initiate 6 or more connections in the last 30 seconds. Users should consider using this option for services such as sshd.
+ufw allow SSH
+ufw limit SSH
+ufw enable
