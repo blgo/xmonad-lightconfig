@@ -8,5 +8,10 @@ x2=${x1%.*}
 
 level="$(amixer | grep -A 5 Master | grep "Mono:" | awk '{print$4}' | sed -e 's/\[//'  -e 's/\%//'  -e 's/\]//' )"
 level2="$(echo "-($level-100)" | bc -l)"
+mute="$(amixer | grep -A 5 Master | grep -o off)"
 
+if [ -n "$mute" ]; then
+echo -e "M" | dzen2 -e '' -p 2 -w 20 -h 110 -x "$(($x2))" -y "$y1" -bg "#224466"
+else
 echo "^ib(1)^ro(15x100)^pa(0;4)^r(15x$level2)" | dzen2 -e '' -p 2 -w 20 -h 110 -x "$(($x2))" -y "$y1" -bg "#224466"
+fi

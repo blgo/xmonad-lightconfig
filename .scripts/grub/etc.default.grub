@@ -1,5 +1,5 @@
 GRUB_DEFAULT=0
-GRUB_TIMEOUT=2
+GRUB_TIMEOUT=15
 GRUB_DISTRIBUTOR="Arch"
 #GRUB_CMDLINE_LINUX_DEFAULT="quiet"
 GRUB_CMDLINE_LINUX=""
@@ -35,8 +35,8 @@ GRUB_GFXPAYLOAD_LINUX=keep
 
 # Uncomment and set to the desired menu colors.  Used by normal and wallpaper 
 # modes only.  Entries specified as foreground/background.
-GRUB_COLOR_NORMAL="light-blue/black"
-GRUB_COLOR_HIGHLIGHT="light-cyan/blue"
+#GRUB_COLOR_NORMAL="light-blue/black"
+#GRUB_COLOR_HIGHLIGHT="light-cyan/blue"
 
 # Uncomment one of them for the gfx desired, a image background or a gfxtheme
 GRUB_BACKGROUND="/home/user/.scripts/grub/background.png"

@@ -1,10 +1,16 @@
 #! /bin/bash
+system_screen_resolution="$(xrandr | sed -n '/*/p' | awk '{print$1}' | sed -n '1 p')"
+xres="$(echo $system_screen_resolution | awk -F 'x' '{print$1}')"
+yres="$(echo $system_screen_resolution | awk -F 'x' '{print$2}')"
+x1="$(echo "$xres*3/4"  | bc -l)"
+x2=${x1%.*}
+
 function func {
-CROSS="^ib(1)x^p(-11)^co(15)^p(-2)"
 DZENLINE=()
-DZENLINE[1]="^ca(1, devmon -u ) ExtUSB^ca()"
-DZENLINE[0]="^ca(1,  wicd-client) Wifi ^ca()^ca(1, wmctrl -c wicd) $CROSS^ca() "
+DZENLINE[0]="^ca(1,  wicd-client) Wifi ^ca()\n"
+DZENLINE[1]="^ca(1, devmon -u ) ExtUSB ^ca()\n"
 DZENLINE[2]="^ca(1, systemctl poweroff -i ) Apagar ^ca()"
-echo "${DZENLINE[*]}"
+echo -e "${DZENLINE[*]}"
 }
-sleep 0.1; func | dzen2 -y -1 -title-name dzenb  -ta center -bg "#224466" -expand left -e '' -fn lat2-10 -p 
+func | dzen2 -w $(($xres-$x2-60))  -x $(($xres-100)) -m h -l 3 -fn lat2-10 -y $yres -title-name dzenc -bg "#224466" -p -sa center -e ''
+
