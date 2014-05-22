@@ -167,3 +167,4 @@ hunspell-en
 hyphen
 hyphen-es
 hyphen-en
+bash-completion

@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/blas/.xmonad'
+let g:netrw_dirhist_2='/home/blas'
+let g:netrw_dirhist_3='/home/blas/test'
+let g:netrw_dirhist_4='/home/blas/scripts/getty@tty1.service.d'
+let g:netrw_dirhist_5='/run/wpa_supplicant'
+let g:netrw_dirhist_6='/var/run/wpa_supplicant'
+let g:netrw_dirhist_7='/run/media/blas/sdb1-usb-Memup_MOVIN_KEY_'
+let g:netrw_dirhist_8='/run/media/blas/sdc1-usb-Memup_MOVIN_KEY_'
