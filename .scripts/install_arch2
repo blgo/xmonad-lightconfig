@@ -20,8 +20,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 pacman -S --needed --noconfirm $(</home/user/.scripts/pkgs.txt)
 ntpd -qg
 hwclock --systohc
-cp -Ra /home/user/.scripts/init_services/getty\@tty1.service.d /etc/systemd/system/
-systemctl enable getty\@tty1.service
+cp -Ra /home/user/.scripts/init_services/getty\@tty2.service.d /etc/systemd/system/
 FILES="/home/user/.scripts/init_services"
 cp -a $FILES/sudoers /etc/
 cp -a $FILES/pacmanupdate /root/
@@ -33,7 +32,7 @@ systemctl enable ntpd
 systemctl enable ufw
 systemctl enable wicd
 systemctl enable pacman-update.service
-systemctl enable getty\@tty1.service.d
+systemctl enable getty\@tty2.service.d
 systemctl disable netctl
 systemctl disable dhcpcd
 sed -i 's/single-window-mode no/single-window-mode yes/' /home/user/.gimp-2.8/sessionrc
