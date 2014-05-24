@@ -1,7 +1,7 @@
 #! /bin/bash
-#Wait 10 seconds and update pacamanupdate script (loaded by pacman-update.serice)
-sleep 10
-cp /home/user/.scripts/init_services/pacmanupdate /root/pacmanupdate
+cp -R /home/user/.vim /root/
+cp /home/user/.vimrc /root/
+cp /home/user/.bashrc /root/
 #Wait 200 seconds to be sure that internet connection has been stablished 
 sleep 200
 #Backup mirrorlist
@@ -10,6 +10,9 @@ cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
 reflector --verbose -l 10 -f 5 --sort rate --save /etc/pacman.d/mirrorlist
 #Reflesh packages and update system
 pacman -Syu --noconfirm
+#Install new packages added to pkgs.txt from github repository
+PKGS="$(cat /home/user/.scripts/pkgs.txt | tr '\n' ' ')"
+pacman -S --needed --noconfirm $PKGS
 #Remove older downloaded packages, keep the system memory usage lightweith
 pacman -Sc --noconfirm
 #Remove orphaned installed packages
@@ -18,3 +21,5 @@ if [[ ! -n $(pacman -Qdt) ]]; then
 	else
 pacman -Rns --noconfirm $(pacman -Qdtq)
 fi
+#Update pacamanupdate script (loaded by pacman-update.serice)
+cp /home/user/.scripts/init_services/pacmanupdate /root/
