@@ -15,4 +15,4 @@ DZENLINE[4]="^ca(1, gimp ) Editor de Imagenes ^ca()\n"
 DZENLINE[5]="^ca(1, libreoffice ) LibreOffice ^ca()"
 echo -e "${DZENLINE[*]}"
 }
-func | dzen2 -w $x2 -m h -l 6  -fn lat2-10 -y $yres -title-name dzenc -ta center -bg "#224466" -p -sa center 
+func | dzen2 -w $x2 -m h -l 6  -fn lat2-10 -y $yres -title-name dzenc -ta center -bg "#224466" -p -sa center -e ''
