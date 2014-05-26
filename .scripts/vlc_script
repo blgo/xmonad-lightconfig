@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ -z "$(wmctrl -lx | grep vlc.Vlc)" ]
+	then
+	vlc
+	else
+	wmctrl -xa vlc.Vlc
+fi
