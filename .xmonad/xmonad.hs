@@ -38,7 +38,7 @@ myManageHook = composeAll  . concat $
 	,  [(className =? "Wicd-client.py" <&&> resource =? "wicd-client.py") --> doFloat]
 	]
 
-myTerminal      = "urxvt -rv"
+myTerminal      = "urxvt -tr -rv -tint darkgrey"
 
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True

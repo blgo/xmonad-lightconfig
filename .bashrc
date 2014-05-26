@@ -1,4 +1,3 @@
-transset-df -n urxvt 0.6
 alias skype_latency='export PULSE_LATENCY_MSEC=60; skype'
 alias sshfast='ssh -C4c arcfour,blowfish-cbc'
 alias sshfastX='ssh -XC4c arcfour,blowfish-cbc'
