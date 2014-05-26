@@ -12,5 +12,5 @@ DZENLINE[1]="^ca(1, devmon -u ) ExtUSB ^ca()\n"
 DZENLINE[2]="^ca(1, systemctl poweroff -i ) Apagar ^ca()"
 echo -e "${DZENLINE[*]}"
 }
-func | dzen2 -w $(($xres-$x2-60))  -x $(($xres-100)) -m h -l 3 -fn lat2-10 -y $yres -title-name dzenc -bg "#224466" -p -sa center -e ''
+func | dzen2 -w $(($xres-$x2-60))  -x $(($xres-100)) -m h -l 3 -fn lat2-10 -y $yres -slave-name dzenb -bg "#224466" -p -sa center -e ''
 

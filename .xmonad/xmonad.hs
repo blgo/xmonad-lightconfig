@@ -34,7 +34,7 @@ myManageHook = composeAll  . concat $
 	,  [ className =? "Gimp"  --> doFloat ]
 	,  [ className =? "Plugin-container"  --> doFloat ]
 	,  [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]
-	,  [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]
+	,  [(className =? "Firefox" <&&> resource =? "Browser") --> doFloat]
 	,  [(className =? "Wicd-client.py" <&&> resource =? "wicd-client.py") --> doFloat]
 	]
 
@@ -57,8 +57,8 @@ myModMask       = mod1Mask
 
 myWorkspaces    = ["1:default","2:mirror"]
 
-myNormalBorderColor  = "#dddddd"
-myFocusedBorderColor = "#00aa00"
+myNormalBorderColor  = "#999999"
+myFocusedBorderColor = "#ffffff"
 ------------------------------------------------------------------------
 -- Layouts:
 myLayout = 	avoidStruts $
@@ -71,7 +71,7 @@ l1 = smartBorders ( Mirror tiled )
 	delta=3/100
 	ratio=1/2
 
-l2 =  smartBorders ( Full )
+l2 =  noBorders ( Full )
 ------------------------------------------------------------------------
 
 mykeys = customKeys delkeys inskeys
