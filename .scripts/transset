@@ -1,4 +1,5 @@
 #!/bin/bash
+sleep 1
 transset-df -n dzena 0.75
 transset-df -n dzenb 0.75
 transset-df -n dzenc 0.75

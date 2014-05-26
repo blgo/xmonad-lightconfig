@@ -1,9 +1,4 @@
 #! /bin/bash
-#system_screen_resolution xrandr 
-#system_screen_resolution="$(head -n 1 /sys/class/drm/card0/card0-DVI-I-1/modes | awk -F 'x' '{print$1}')"
-#bar="$( echo "$system_screen_resolution*3/4"  | bc -l)"
-#bar2=${bar%.*}
-
 function func {
 i=0
 while true;
@@ -22,12 +17,13 @@ while [ "$i" -le "$LENGTH" ]
 do
 	DZENLINE["$i"]="^ca(1, $CMD ${WINDOWS_ID["$i"]})${WINDOWS2["$i"]} "${WINDOWS["$i"]}"^ca()"
 	if [ -n "${WINDOWS["$i"]}" ]; then 
-		DZENLINE["$i"]+="^ca(1, $CMDx ${WINDOWS_ID["$i"]}) $CROSS^ca()"
+		DZENLINE["$i"]+="^ca(1, $CMDx ${WINDOWS_ID["$i"]}) ^fg(red)$CROSS^ca()"
 	fi
 	#the last value in this array is the focused window, it's highlighted
 	if [ "$i" -eq "$(($LENGTH-1))" ]; then 
-		SWAP="${DZENLINE["$i"]}"
-		DZENLINE["$i"]="^fg(#224466)^bg(#999999)$SWAP"
+		DZENLINE["$i"]="^fg(#224466)^bg(#999999)${DZENLINE["$i"]}"
+	else
+		DZENLINE["$i"]="^bg(#224466)^fg(#999999)${DZENLINE["$i"]}"
 	fi
 	i=$(($i+1))
 done

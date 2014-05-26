@@ -5,7 +5,6 @@ bash
 bash-completion
 bc
 bzip2
-chromium
 coreutils
 cronie
 cryptsetup
