@@ -4,10 +4,6 @@
 #bar="$( echo "$system_screen_resolution*3/4"  | bc -l)"
 #bar2=${bar%.*}
 
-function specialchars {
-export TITLE="$(echo "$1" | sed -e 's/á/a/' -e 's/é/e/' -e 's/í/i/'  -e 's/ó/o/' -e 's/ú/u/' -e 's/ñ/n/')"
-}
-
 function func {
 i=0
 while true;
@@ -24,10 +20,8 @@ WINDOWS_ID=($(wmctrl -xl | awk '{print$1}' | tr "\n" " "))
 LENGTH="${#WINDOWS[*]}"
 while [ "$i" -le "$LENGTH" ]
 do
-	
-	specialchars "${WINDOWS["$i"]}"
-	DZENLINE["$i"]="^ca(1, $CMD ${WINDOWS_ID["$i"]})${WINDOWS2["$i"]} $TITLE^ca()"
-	if [ -n "$TITLE" ]; then 
+	DZENLINE["$i"]="^ca(1, $CMD ${WINDOWS_ID["$i"]})${WINDOWS2["$i"]} "${WINDOWS["$i"]}"^ca()"
+	if [ -n "${WINDOWS["$i"]}" ]; then 
 		DZENLINE["$i"]+="^ca(1, $CMDx ${WINDOWS_ID["$i"]}) $CROSS^ca()"
 	fi
 	#the last value in this array is the focused window, it's highlighted
