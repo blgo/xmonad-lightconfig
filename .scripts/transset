@@ -1,0 +1,6 @@
+#!/bin/bash
+transset-df -n dzena 0.75
+transset-df -n dzenb 0.75
+transset-df -n dzenc 0.75
+transset-df -n dzend 0.75
+transset-df -n dzene 0.75
