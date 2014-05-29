@@ -1,22 +1,20 @@
 #!/bin/bash
-echo "archuser" > /etc/hostname
-ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtime
-sed 's/#es_ES ISO-8859-1/es_ES ISO-8859-1/' /etc/locale.gen > /etc/locale.gen2
-cp -a /etc/locale.gen2 /etc/locale.gen
-locale-gen
-echo "LANG="es_ES.ISO8859-1"" > /etc/locale.conf
-echo "KEYMAP=es" > /etc/vconsole.conf
-mkinitcpio -p linux
-grub-install --target=i386-pc --recheck --debug /dev/sda
 useradd -m -g users -G wheel -s /bin/bash user
 rm -R /home/user
 mkdir /home/user
 cd /home/user
 git clone https://github.com/jblasgf/xmonad-lightconfig ./
+echo "archuser" > /etc/hostname
+ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtime
+cp ./.scripts/init_services/locale.gen /etc/locale.conf
+cp ./.scripts/init_services/locale.gen /etc/locale.gen
+locale-gen
+cp ./.scripts/init_services/etc.fonts.fonts.conf /etc/fonts/fonts.conf
+mkinitcpio -p linux
+grub-install --target=i386-pc --recheck --debug /dev/sda
 chown -R user:users ./
 cp -a /home/user/.scripts/grub/etc.default.grub /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
-
 pacman -S --needed --noconfirm $(</home/user/.scripts/pkgs.txt)
 ntpd -qg
 hwclock --systohc
