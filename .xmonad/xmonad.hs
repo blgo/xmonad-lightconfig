@@ -28,14 +28,18 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Actions.WindowGo
 
 import XMonad.Hooks.EwmhDesktops
+
+import XMonad.Hooks.ManageHelpers
+
 myManageHook = composeAll  . concat $
 	[  [ className =? "Xmessage"  --> doFloat ]
 	,  [ className =? "Zenity"  --> doFloat ]
 	,  [ className =? "Gimp"  --> doFloat ]
-	,  [ className =? "Plugin-container"  --> doFloat ]
+--	,  [ className =? "Plugin-container"  --> doFloat ]
 	,  [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]
 	,  [(className =? "Firefox" <&&> resource =? "Browser") --> doFloat]
 	,  [(className =? "Wicd-client.py" <&&> resource =? "wicd-client.py") --> doFloat]
+	,  [ isFullscreen --> doFullFloat ]
 	]
 
 myTerminal      = "urxvt -tr -rv -tint darkgrey"
@@ -121,7 +125,7 @@ defaults = defaultConfig {
 
 	-- hooks, layouts 
 	manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig,
-	layoutHook         = myLayout,
+	layoutHook         = smartBorders (myLayout),
 	startupHook        = myStartupHook,
     
 	-- keybindings

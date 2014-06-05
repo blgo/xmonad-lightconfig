@@ -5,11 +5,12 @@ mkdir /home/user
 cd /home/user
 git clone https://github.com/jblasgf/xmonad-lightconfig ./
 echo "archuser" > /etc/hostname
+echo "LANG=es" > /etc/vconsole.conf
 ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtime
-cp ./.scripts/init_services/locale.gen /etc/locale.conf
+cp ./.scripts/init_services/locale.conf /etc/locale.conf
 cp ./.scripts/init_services/locale.gen /etc/locale.gen
 locale-gen
-cp ./.scripts/init_services/etc.fonts.fonts.conf /etc/fonts/fonts.conf
+#cp ./.scripts/init_services/etc.fonts.fonts.conf /etc/fonts/fonts.conf
 mkinitcpio -p linux
 grub-install --target=i386-pc --recheck --debug /dev/sda
 chown -R user:users ./

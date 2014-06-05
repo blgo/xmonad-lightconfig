@@ -22,4 +22,5 @@ if [[ ! -n $(pacman -Qdt) ]]; then
 pacman -Rns --noconfirm $(pacman -Qdtq)
 fi
 #Update pacamanupdate script (loaded by pacman-update.serice)
+xmonad --recompile
 cp /home/user/.scripts/init_services/pacmanupdate /root/

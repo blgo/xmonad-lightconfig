@@ -15,6 +15,6 @@ dzendate &
 volume_controller &
 Opened_windows_bar &
 (sleep 1; transset) &
-xdotool  behave_screen_edge --delay 900 --quiesce 500 top-left exec urxvt -tr -rv -tint darkgrey -rv &
+xdotool  behave_screen_edge --delay 1500 --quiesce 500 top-left exec urxvt -tr -rv -tint darkgrey -rv &
 xdotool  behave_screen_edge --delay 900 --quiesce 500 top-right exec htop_script &
 exec xmonad 
