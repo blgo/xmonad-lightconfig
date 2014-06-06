@@ -37,11 +37,11 @@ done
 i=0
 echo " ^ca(1, zenity --calendar)$(date +%H:%M:%S)^ca() ${DZENLINE[*]} "
 DZENLINE=()
-sleep 1;
-done;
+sleep 1
+done
 }
 
-func | dzen2 -title-name dzend -ta center -bg "#224466" -e '' -fn lat2-10 -dock -y 0 -expand right
+func | dzen2 -title-name dzend -ta center -bg "#224466" -e '' -fn lat2-10 -dock -y 0 -expand right 
 
 #install "wmctrl" from the official repositories
 #add this to make work "wmctrl" in xmonad
