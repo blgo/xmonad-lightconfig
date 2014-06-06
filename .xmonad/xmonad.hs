@@ -1,5 +1,5 @@
 --
---
+--xmonad 
 -- xmonad example config file.
 --
 -- A template showing all available configuration hooks,
