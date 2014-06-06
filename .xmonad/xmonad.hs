@@ -35,6 +35,9 @@ myManageHook = composeAll  . concat $
 	[  [ className =? "Xmessage"  --> doFloat ]
 	,  [ className =? "Zenity"  --> doFloat ]
 	,  [ className =? "Gimp"  --> viewShift "2" ]
+	,  [ className =? "Vlc"  --> viewShift "1" ]
+	,  [ className =? "Thunar"  --> viewShift "1" ]
+	,  [ className =? "Firefox"  --> viewShift "1" ]
 	,  [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]
 	,  [(className =? "Firefox" <&&> resource =? "Browser") --> doFloat]
 	,  [ isFullscreen --> doFullFloat ]
@@ -66,14 +69,14 @@ myFocusedBorderColor = "#ffffff"
 ------------------------------------------------------------------------
 -- Layouts:
 myLayout = 	avoidStruts $
-	--	onWorkspace "2:mirror" l1 $
+		onWorkspace "3" l1 $
 		l2
--- l1 = smartBorders ( Mirror tiled )
---	where 
---	tiled= Tall nmaster delta ratio
---	nmaster=3
---	delta=3/100
---	ratio=1/2
+l1 = smartBorders ( Mirror tiled )
+	where 
+	tiled= Tall nmaster delta ratio
+	nmaster=2
+	delta=3/100
+	ratio=1/2
 
 l2 =  noBorders ( Full )
 ------------------------------------------------------------------------

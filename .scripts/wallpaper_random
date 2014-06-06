@@ -9,5 +9,10 @@ PIC=$HOME/Pictures/wallpapers/wallpaper$DATE.jpg
 if [ -s $HOME/Pictures/wallpapers/wallpaper$DATE.jpg ]; 
 then 
 cp $HOME/Pictures/wallpapers/wallpaper$DATE.jpg $HOME/.background.jpg
-hsetroot -center $HOME/.background.jpg
+else
+echo "Download failed. Setting an stored one"
+PIC="$(ls $HOME/Pictures/wallpapers/ | shuf | tail -n 1)"
+cp $HOME/Pictures/wallpapers/$PIC $HOME/.background.jpg
 fi
+hsetroot -center $HOME/.background.jpg
+read -p "Press enter to close..."
