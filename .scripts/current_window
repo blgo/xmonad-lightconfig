@@ -13,10 +13,15 @@ while true; do
 CURRENT_WORKSPACE="$(wmctrl -d | sed '/\*/!d' | awk '{print$1}')"
 CURRENT_WINDOW_ID="$(wmctrl -l | sed '/[0-f]\ \ '$CURRENT_WORKSPACE'\ /!d' | tail -n 1 | awk '{print$1}')"
 CURRENT_WINDOW_TITLE="$(wmctrl -xl | sed '/[0-f]\ \ '$CURRENT_WORKSPACE'\ /!d' | tail -n 1 | awk '{print$3}' | sed 's/[0-Z]*.\([0-Z]*\)/\1/g' )"
-DZENLINE="^ca(1, $CMD $CURRENT_WINDOW_ID)$CURRENT_WINDOW_TITLE^ca()"
-DZENLINE+="^ca(1, $CMDx $CURRENT_WINDOW_ID) $CROSS^ca()"
-DZENLINE="^bg($BG)^fg($FG)$DZENLINE  "
-echo "$DZENLINE"
+	if [ -n "$CURRENT_WINDOW_TITLE" ]; then
+		DZENLINE="^ca(1, $CMD $CURRENT_WINDOW_ID)$CURRENT_WINDOW_TITLE^ca()"
+		DZENLINE+="^ca(1, $CMDx $CURRENT_WINDOW_ID) $CROSS^ca()"
+		DZENLINE="^bg($BG)^fg($FG)$DZENLINE  "
+		echo "$DZENLINE"
+	else
+		echo "$(date "+%A, %d %B %Y")"
+	fi
+DZENLINE=" "
 sleep 1;
 done
 }

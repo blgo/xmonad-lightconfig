@@ -33,16 +33,14 @@ import XMonad.Hooks.ManageHelpers
 
 myManageHook = composeAll  . concat $
 	[  [ className =? "Xmessage"  --> doFloat ]
-	,  [ className =? "Gimp" --> viewShift "2:Gimp" ]
 	,  [ className =? "Zenity"  --> doFloat ]
-	,  [ className =? "Gimp"  --> doFloat ]
---	,  [ className =? "Plugin-container"  --> doFloat ]
+	,  [ className =? "Gimp"  --> viewShift "2" ]
 	,  [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]
 	,  [(className =? "Firefox" <&&> resource =? "Browser") --> doFloat]
-	,  [(className =? "Wicd-client.py" <&&> resource =? "wicd-client.py") --> viewShift "3:Wicd" ]
 	,  [ isFullscreen --> doFullFloat ]
 	]
-	where viewShift = doF . liftM2 (.) W.greedyView W.shift
+        where viewShift = doF . liftM2 (.) W.greedyView W.shift
+
 
 myTerminal      = "urxvt -tr -rv -tint darkgrey"
 
@@ -61,7 +59,7 @@ myBorderWidth   = 1
 --
 myModMask       = mod1Mask
 
-myWorkspaces    = ["1:default","2:Gimp","3:Wicd"]
+myWorkspaces    = ["1","2","3"]
 
 myNormalBorderColor  = "#999999"
 myFocusedBorderColor = "#ffffff"
