@@ -1,4 +1,5 @@
 #!/bin/bash
+
 hsetroot -solid "#000000"
 xcompmgr -f &
 if [ -x /bin/wicd-client ]; then wicd-client -t & fi
