@@ -12,25 +12,26 @@ CMD="wmctrl -ia "
 CMDx="wmctrl -ic "
 
 #CROSS="^ib(1)x^p(-11)^co(15)^p(-2)"
-CROSS="X"
-WINDOWS=($(wmctrl -l | sort | awk '{print$4$5$6}' | tr "\n" " ")) 
-WINDOWS2=($(wmctrl -xl | sort | awk '{print$3}' | sed 's/\([0-Z]*\).[0-Z]*/\1/g' | tr "\n" " ")) 
-WINDOWS_ID=($(wmctrl -xl | sort | awk '{print$1}' | tr "\n" " "))
+CROSS="^fg(red)X"
+WINDOWS=($(wmctrl -l | sort -n | awk '{print$4$5$6}' | tr "\n" " ")) 
+WINDOWS2=($(wmctrl -xl | sort -n | awk '{print$3}' | sed 's/\([0-Z]*\).[0-Z]*/\1/g' | tr "\n" " ")) 
+WINDOWS_ID=($(wmctrl -xl | sort -n | awk '{print$1}' | tr "\n" " "))
 CURRENT_WORKSPACE="$(wmctrl -d | sed '/\*/!d' | awk '{print$1}')"
 CURRENT_WINDOW_ID="$(wmctrl -l | sed '/[0-f]\ \ '$CURRENT_WORKSPACE'\ /!d' | tail -n 1 | awk '{print$1}')"
+CURRENT_WINDOW_TITLE="$(wmctrl -xl | sed '/[0-f]\ \ '$CURRENT_WORKSPACE'\ /!d' | tail -n 1 | awk '{print$3}' | sed 's/\([0-Z]*\).[0-Z]*/\1/g' )"
 LENGTH="${#WINDOWS[*]}"
 while [ "$i" -le "$LENGTH" ]
 do
 		DZENLINE["$i"]="^ca(1, $CMD ${WINDOWS_ID["$i"]})${WINDOWS2["$i"]} "${WINDOWS["$i"]}"^ca()"
-	if [ -n "${WINDOWS["$i"]}" ]; then 
-			DZENLINE["$i"]+="^ca(1, $CMDx ${WINDOWS_ID["$i"]}) ^fg(red)$CROSS^ca()"
-		#the last value in this array is the focused window, it's highlighted
-		if [ "${WINDOWS_ID["$i"]}" = "$CURRENT_WINDOW_ID"  ]; then
-			DZENLINE["$i"]="^fg(#224466)^bg(#999999)${DZENLINE["$i"]}"
-		else
-			DZENLINE["$i"]="^bg(#224466)^fg(#999999)${DZENLINE["$i"]}"
+		if [ -n "${WINDOWS["$i"]}" ]; then 
+				DZENLINE["$i"]+="^ca(1, $CMDx ${WINDOWS_ID["$i"]}) $CROSS^ca()"
+			#the last value in this array is the focused window, it's highlighted
+			if [ "${WINDOWS_ID["$i"]}" = "$CURRENT_WINDOW_ID"  ]; then
+				DZENLINE["$i"]="^fg(#224466)^bg(#999999)${DZENLINE["$i"]}"
+			else
+				DZENLINE["$i"]="^bg(#224466)^fg(#999999)${DZENLINE["$i"]}"
+			fi
 		fi
-	fi
 	i=$(($i+1))
 done
 i=0
