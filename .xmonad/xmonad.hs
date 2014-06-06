@@ -33,14 +33,16 @@ import XMonad.Hooks.ManageHelpers
 
 myManageHook = composeAll  . concat $
 	[  [ className =? "Xmessage"  --> doFloat ]
+	,  [ className =? "Gimp" --> viewShift "2:Gimp" ]
 	,  [ className =? "Zenity"  --> doFloat ]
 	,  [ className =? "Gimp"  --> doFloat ]
 --	,  [ className =? "Plugin-container"  --> doFloat ]
 	,  [(className =? "Firefox" <&&> resource =? "Dialog") --> doFloat]
 	,  [(className =? "Firefox" <&&> resource =? "Browser") --> doFloat]
-	,  [(className =? "Wicd-client.py" <&&> resource =? "wicd-client.py") --> doFloat]
+	,  [(className =? "Wicd-client.py" <&&> resource =? "wicd-client.py") --> viewShift "3:Wicd" ]
 	,  [ isFullscreen --> doFullFloat ]
 	]
+	where viewShift = doF . liftM2 (.) W.greedyView W.shift
 
 myTerminal      = "urxvt -tr -rv -tint darkgrey"
 
@@ -59,21 +61,21 @@ myBorderWidth   = 1
 --
 myModMask       = mod1Mask
 
-myWorkspaces    = ["1:default","2:mirror"]
+myWorkspaces    = ["1:default","2:Gimp","3:Wicd"]
 
 myNormalBorderColor  = "#999999"
 myFocusedBorderColor = "#ffffff"
 ------------------------------------------------------------------------
 -- Layouts:
 myLayout = 	avoidStruts $
-		onWorkspace "2:mirror" l1 $
+	--	onWorkspace "2:mirror" l1 $
 		l2
-l1 = smartBorders ( Mirror tiled )
-	where 
-	tiled= Tall nmaster delta ratio
-	nmaster=3
-	delta=3/100
-	ratio=1/2
+-- l1 = smartBorders ( Mirror tiled )
+--	where 
+--	tiled= Tall nmaster delta ratio
+--	nmaster=3
+--	delta=3/100
+--	ratio=1/2
 
 l2 =  noBorders ( Full )
 ------------------------------------------------------------------------

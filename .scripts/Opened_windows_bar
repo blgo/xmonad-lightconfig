@@ -13,9 +13,9 @@ CMDx="wmctrl -ic "
 
 #CROSS="^ib(1)x^p(-11)^co(15)^p(-2)"
 CROSS="^fg(red)X"
-WINDOWS=($(wmctrl -l | sort -n | awk '{print$4$5$6}' | tr "\n" " ")) 
-WINDOWS2=($(wmctrl -xl | sort -n | awk '{print$3}' | sed 's/\([0-Z]*\).[0-Z]*/\1/g' | tr "\n" " ")) 
-WINDOWS_ID=($(wmctrl -xl | sort -n | awk '{print$1}' | tr "\n" " "))
+WINDOWS=($(wmctrl -l | sed '/-1/d' | sort -n | awk '{print$4$5$6}' | tr "\n" " ")) 
+WINDOWS2=($(wmctrl -xl | sed '/-1/d' | sort -n | awk '{print$3}' | sed 's/\([0-Z]*\).[0-Z]*/\1/g' | tr "\n" " ")) 
+WINDOWS_ID=($(wmctrl -xl | sed '/-1/d' | sort -n | awk '{print$1}' | tr "\n" " "))
 CURRENT_WORKSPACE="$(wmctrl -d | sed '/\*/!d' | awk '{print$1}')"
 CURRENT_WINDOW_ID="$(wmctrl -l | sed '/[0-f]\ \ '$CURRENT_WORKSPACE'\ /!d' | tail -n 1 | awk '{print$1}')"
 CURRENT_WINDOW_TITLE="$(wmctrl -xl | sed '/[0-f]\ \ '$CURRENT_WORKSPACE'\ /!d' | tail -n 1 | awk '{print$3}' | sed 's/\([0-Z]*\).[0-Z]*/\1/g' )"
@@ -41,7 +41,7 @@ sleep 1;
 done;
 }
 
-func | dzen2 -title-name dzend -ta center -bg "#224466" -expand left -e '' -fn lat2-10 
+func | dzen2 -title-name dzend -ta center -bg "#224466" -expand right -e '' -fn lat2-10 
 
 #install "wmctrl" from the official repositories
 #add this to make work "wmctrl" in xmonad
