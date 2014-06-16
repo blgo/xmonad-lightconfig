@@ -4,10 +4,12 @@ FONT=lat2-10
 BG='#224466'
 
 system_screen_resolution="$(xrandr | sed -n '/*/p' | awk '{print$1}' | sed -n '1 p' )"
-xres="$(echo $system_screen_resolution | awk -F 'x' '{print$1}')"
-yres="$(echo $system_screen_resolution | awk -F 'x' '{print$2}')"
-x1="$(echo "$xres*4/20" | bc)"
-x2="$(echo "$xres*10/20" | bc)"
+export xres="$(echo $system_screen_resolution | awk -F 'x' '{print$1}')"
+export yres="$(echo $system_screen_resolution | awk -F 'x' '{print$2}')"
+function factor {
+echo "$xres*$1/20" | bc
+}
+
 #x2=${x1%.*}
 
 function applications {
@@ -20,7 +22,7 @@ DZENLINE[4]="^ca(1, htop_script ) Administrador de Tareas ^ca()\n"
 DZENLINE[5]="^ca(1, urxvt +sb -tr -rv -e wallpaper_random ) Fondo de Pantalla aleatorio ^ca()"
 echo -e "${DZENLINE[*]}"
 }
-(applications | dzen2 -x 0 -w $x1 -m -l 5 -fn $FONT -y $yres -title-name dzeng  -bg $BG -p -ta center -sa center -e 'button1=uncollapse;leaveslave=collapse') &
+(applications | dzen2 -x 0 -w "$(factor 5)" -m -l 5 -fn $FONT -y $yres -title-name dzeng  -bg $BG -p -ta center -sa center -e 'button1=uncollapse;leaveslave=collapse') &
 
 function launchers {
 DZENLINE=()
@@ -29,8 +31,7 @@ DZENLINE[1]="^ca(1, thunar_script ) Gestor de Archivos ^ca()\n"
 DZENLINE[2]="^ca(1, vlc_script ) Reproductor Multimedia ^ca()"
 echo -e "${DZENLINE[*]}"
 }
-(launchers | dzen2 -x $((x1+20)) -w $x2 -m h -l 3 -fn $FONT -y $yres -slave-name dzena -ta center -bg $BG -p -sa center -e '') &
- 
+(launchers | dzen2 -x "$(factor 5)" -w "$(factor 10)" -m h -l 3 -fn $FONT -y $yres -slave-name dzena -ta center -bg $BG -p -sa center -e '') &
 
 function audio {
 DZENLINE=()
@@ -39,7 +40,7 @@ DZENLINE[1]="^ca(1, amixer -q set Master unmute & amixer -q set LFE unmute & ami
 DZENLINE[2]="^ca(1, amixer -q set Master toggle & amixer -q set LFE toggle & volume_level $1 )M ^ca()"
 echo -e "${DZENLINE[*]}"
 }
-(audio $system_screen_resolution | dzen2 -x $(($xres-260)) -w 60 -m h -l 3  -fn $FONT -y -1 -slave-name dzene -bg $BG -p -sa center -e 'enterslave=exec:volume_level '$system_screen_resolution'') &
+(audio $system_screen_resolution | dzen2 -x "$(factor 15)" -w "$(factor 1)" -m h -l 3  -fn $FONT -y -1 -slave-name dzene -bg $BG -p -sa center -e 'enterslave=exec:volume_level '$system_screen_resolution' '$(factor 15)'') &
 
 function systemtray {
 DZENLINE=()
@@ -48,7 +49,7 @@ DZENLINE[1]="^ca(1, devmon -u ) ExtUSB ^ca()\n"
 DZENLINE[2]="^ca(1, systemctl poweroff -i ) Apagar ^ca()"
 echo -e "${DZENLINE[*]}"
 }
-(systemtray | dzen2 -x $(($xres-200)) -w 200 -m h -l 3 -fn $FONT -y $yres -slave-name dzenb -bg $BG -p -sa center -e '' -expand right ) &
+(systemtray | dzen2 -x "$(factor 16)" -w "$(factor 4)" -m h -l 3 -fn $FONT -y $yres -slave-name dzenb -bg $BG -p -sa center -e '' -expand right ) &
 
 
 
