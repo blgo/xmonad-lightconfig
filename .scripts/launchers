@@ -40,7 +40,7 @@ DZENLINE[1]="^ca(1, amixer -q set Master unmute & amixer -q set LFE unmute & ami
 DZENLINE[2]="^ca(1, amixer -q set Master toggle & amixer -q set LFE toggle & volume_level $1 )M ^ca()"
 echo -e "${DZENLINE[*]}"
 }
-(audio $system_screen_resolution | dzen2 -x "$(factor 15)" -w "$(factor 1)" -m h -l 3  -fn $FONT -y -1 -slave-name dzene -bg $BG -p -sa center -e 'enterslave=exec:volume_level '$system_screen_resolution' '$(factor 15)'') &
+(audio $system_screen_resolution | dzen2 -x "$(factor 15)" -w "$(factor '1.5')" -m h -l 3  -fn $FONT -y $yres -slave-name dzene -bg $BG -p -sa center -e 'enterslave=exec:volume_level '$system_screen_resolution' '$(factor 15)'') &
 
 function systemtray {
 DZENLINE=()
@@ -49,7 +49,7 @@ DZENLINE[1]="^ca(1, devmon -u ) ExtUSB ^ca()\n"
 DZENLINE[2]="^ca(1, systemctl poweroff -i ) Apagar ^ca()"
 echo -e "${DZENLINE[*]}"
 }
-(systemtray | dzen2 -x "$(factor 16)" -w "$(factor 4)" -m h -l 3 -fn $FONT -y $yres -slave-name dzenb -bg $BG -p -sa center -e '' -expand right ) &
+(systemtray | dzen2 -x "$(factor '16.5')" -w "$(factor '3.5')" -m h -l 3 -fn $FONT -y $yres -slave-name dzenb -bg $BG -p -sa center -e '' -expand right ) &
 
 
 

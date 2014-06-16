@@ -8,12 +8,12 @@ if [ -d "$VIDEO_DIR" ]; then
 VIDEO_DIR_VGA="$(ls $VIDEO_DIR | grep VGA)"
 if [ -n "$VIDEO_DIR_VGA" ]; then 
 	dmodeVGA="$(cat $VIDEO_DIR$VIDEO_DIR_VGA/status)"
-	VGAresolution="$(cat $VIDEO_DIR$VIDEO_DIR_VGA/modes | head -n 2 | sed -n '2 p')"
+	VGAresolution="$(cat $VIDEO_DIR$VIDEO_DIR_VGA/modes | grep 1024 | head -n 1 )"
 	else
 	VIDEO_DIR_VGA="$(ls $VIDEO_DIR | grep DVI)"
 	if [ -n "$VIDEO_DIR_VGA" ]; then 
 		dmodeVGA="$(cat $VIDEO_DIR$VIDEO_DIR_VGA/status)"
-		VGAresolution="$(cat $VIDEO_DIR$VIDEO_DIR_VGA/modes | head -n 2 | sed -n '2 p')"
+		VGAresolution="$(cat $VIDEO_DIR$VIDEO_DIR_VGA/modes | grep 1024 | head -n 1)"
 	fi
 fi
 
@@ -30,15 +30,17 @@ if [ -n "$VIDEO_DIR_HDMI" ]; then
 fi
 
 if [ "${dmodeVGA}" = connected ] || [ "${dmodeHDMI}" = connected ]; then
-		if [ "${dmodeVGA}" = connected ] && [ "${dmodeHDMI}" = disconnected ]; then
-			xrandr --output $VGAname --mode "$VGAresolution" --auto --output $LVDSname --off --output $HDMIname --off
+		if [ "${dmodeVGA}" = connected ]; then
+			xrandr --output $VGAname --mode "$VGAresolution" --auto
+			xrandr --output $HDMIname --off
+			xrandr --output $LVDSname --off
 			echo	"defaults.pcm.card 0" > $HOME/.asoundrc
 			#0 will enable VGA audio output
 			echo	"defaults.pcm.device 0" >> $HOME/.asoundrc
 			echo	"defaults.ctl.card 0" >> $HOME/.asoundrc
 		fi
 
-		if [ "${dmodeVGA}" = disconnected ] && [ "${dmodeHDMI}" = connected ]; then
+		if [ "${dmodeHDMI}" = connected ]; then
 		echo	"defaults.pcm.card 1" > $HOME/.asoundrc
 		#3 will enable HDMI audio output
 		echo	"defaults.pcm.device 3" >> $HOME/.asoundrc
