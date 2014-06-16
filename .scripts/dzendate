@@ -6,4 +6,4 @@ LINE="^ca(1, zenity --calendar)$(date +%H:%M)^ca()"
 echo "$LINE"
 sleep 60 
 done
-} | dzen2 -title-name dzenc -bg "#224466" -e '' -fn lat2-10 -expand right 
+} | dzen2 -title-name dzenc -bg "#224466" -e '' -fn lat2-10 -expand right
