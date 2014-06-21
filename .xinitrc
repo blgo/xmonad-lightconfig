@@ -1,5 +1,7 @@
 #!/bin/bash
-#
+synclient PalmDetect=1
+synclient PalmMinWidth=3
+synclient PalmMinZ=100
 hsetroot -solid "#000000"
 xcompmgr -f &
 if [ -x /bin/wicd-client ]; then wicd-client -t & fi
