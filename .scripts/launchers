@@ -44,7 +44,7 @@ echo -e "${DZENLINE[*]}"
 
 function systemtray {
 DZENLINE=()
-DZENLINE[0]="^ca(1,  wicd-client) Wifi ^ca()\n"
+DZENLINE[0]="^ca(1,  wicd_script ) Wifi ^ca()\n"
 DZENLINE[1]="^ca(1, devmon -u ) ExtUSB ^ca()\n"
 DZENLINE[2]="^ca(1, systemctl poweroff -i ) Apagar ^ca()"
 echo -e "${DZENLINE[*]}"

@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ -z "$(wmctrl -xl | grep  wicd-client.py.Wicd-client.py)" ]
+then
+wicd-client
+else
+wmctrl -xa wicd-client.py.Wicd-client.py
+fi
