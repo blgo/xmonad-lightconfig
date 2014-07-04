@@ -3,7 +3,7 @@
 FONT=lat2-10
 BG='#224466'
 
-system_screen_resolution="$(xrandr | sed -n '/*/p' | awk '{print$1}' | sed -n '1 p' )"
+export system_screen_resolution="$(xrandr | sed -n '/*/p' | awk '{print$1}' | sed -n '1 p' )"
 export xres="$(echo $system_screen_resolution | awk -F 'x' '{print$1}')"
 export yres="$(echo $system_screen_resolution | awk -F 'x' '{print$2}')"
 function factor {
@@ -19,7 +19,8 @@ DZENLINE[1]="^ca(1, mirage $HOME/Pictures/ ) Galeria de Imagenes ^ca()\n"
 DZENLINE[2]="^ca(1, gimp ) Editor de Imagenes ^ca()\n"
 DZENLINE[3]="^ca(1, libreoffice ) LibreOffice ^ca()\n"
 DZENLINE[4]="^ca(1, htop_script ) Administrador de Tareas ^ca()\n"
-DZENLINE[5]="^ca(1, urxvt +sb -tr -rv -e wallpaper_random ) Fondo de Pantalla aleatorio ^ca()"
+DZENLINE[5]="^ca(1, urxvt +sb -tr -rv -e wallpaper_random ) Fondo de Pantalla aleatorio ^ca()\n"
+DZENLINE[6]="^ca(1, urxvt +sb -tr -rv -e sudo clamav_script) Antivirus para tu windows "NEW" ^ca()"
 echo -e "${DZENLINE[*]}"
 }
 (applications | dzen2 -x 0 -w "$(factor 5)" -m -l 5 -fn $FONT -y $yres -title-name dzeng  -bg $BG -p -ta center -sa center -e 'button1=uncollapse;leaveslave=collapse') &
@@ -35,9 +36,9 @@ echo -e "${DZENLINE[*]}"
 
 function audio {
 DZENLINE=()
-DZENLINE[0]="^ca(1, amixer -q set Master unmute & amixer -q set LFE unmute & amixer -q set Master 7%- & amixer -q set PCM 7%- & volume_level $1 ) < ^ca()\n"
-DZENLINE[1]="^ca(1, amixer -q set Master unmute & amixer -q set LFE unmute & amixer -q set Master 7%+ & amixer -q set PCM 7%+ & volume_level $1 ) > ^ca()\n"
-DZENLINE[2]="^ca(1, amixer -q set Master toggle & amixer -q set LFE toggle & volume_level $1 )M ^ca()"
+DZENLINE[0]="^ca(1, amixer -q set Master unmute & amixer -q set LFE unmute & amixer -q set Master 7%- & amixer -q set PCM 7%- & volume_level '$system_screen_resolution' '$(factor 15)' ) < ^ca()\n"
+DZENLINE[1]="^ca(1, amixer -q set Master unmute & amixer -q set LFE unmute & amixer -q set Master 7%+ & amixer -q set PCM 7%+ & volume_level '$system_screen_resolution' '$(factor 15)' ) > ^ca()\n"
+DZENLINE[2]="^ca(1, amixer -q set Master toggle & amixer -q set LFE toggle & volume_level '$system_screen_resolution' '$(factor 15)' )M ^ca()"
 echo -e "${DZENLINE[*]}"
 }
 (audio $system_screen_resolution | dzen2 -x "$(factor 15)" -w "$(factor '1.5')" -m h -l 3  -fn $FONT -y $yres -slave-name dzene -bg $BG -p -sa center -e 'enterslave=exec:volume_level '$system_screen_resolution' '$(factor 15)'') &

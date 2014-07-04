@@ -1,4 +1,5 @@
 #! /bin/bash
+mkdir /home/user/.found_viruses
 cp -R /home/user/.vim /root/
 cp /home/user/.vimrc /root/
 cp /home/user/.bashrc /root/
@@ -7,6 +8,7 @@ sleep 200
 #Backup mirrorlist
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup 
 #Update mirror list, get 10 latest updated mirrors, then keep the 5 fastest and sort them by "rate"
+freshclam
 reflector --verbose -l 10 -f 5 --sort rate --save /etc/pacman.d/mirrorlist
 #Reflesh packages and update system
 pacman -Syu --noconfirm

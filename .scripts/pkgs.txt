@@ -171,3 +171,4 @@ xorg-xwud
 zenity
 xcompmgr
 wxgtk2.8
+clamav
