@@ -4,8 +4,8 @@ synclient PalmMinWidth=3
 synclient PalmMinZ=100
 hsetroot -solid "#000000"
 xcompmgr -f &
-if [ -x /bin/wicd-client ]; then wicd-client -t & fi
-(sleep 200; cd $HOME; git pull origin master) &
+if [ -x /bin/wicd-client ] && [ -z "$(ps -e | grep wpa_supplicant)" ]; then wicd-client -t & fi
+(sleep 200; cd $HOME; git pull origin master; ) &
 xsetroot -cursor_name left_ptr -rv 
 devmon &
 setxkbmap -layout es
