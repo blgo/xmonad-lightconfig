@@ -19,8 +19,7 @@ DZENLINE[1]="^ca(1, mirage $HOME/Pictures/ ) Galeria de Imagenes ^ca()\n"
 DZENLINE[2]="^ca(1, gimp ) Editor de Imagenes ^ca()\n"
 DZENLINE[3]="^ca(1, libreoffice ) LibreOffice ^ca()\n"
 DZENLINE[4]="^ca(1, htop_script ) Administrador de Tareas ^ca()\n"
-DZENLINE[5]="^ca(1, urxvt +sb -tr -rv -e wallpaper_random ) Fondo de Pantalla aleatorio ^ca()\n"
-DZENLINE[6]="^ca(1, urxvt +sb -tr -rv -e sudo clamav_script) Antivirus para tu windows "NEW" ^ca()"
+DZENLINE[5]="^ca(1, urxvt +sb -tr -rv -e wallpaper_random ) Fondo de Pantalla aleatorio ^ca()"
 echo -e "${DZENLINE[*]}"
 }
 (applications | dzen2 -x 0 -w "$(factor 5)" -m -l 5 -fn $FONT -y $yres -title-name dzeng  -bg $BG -p -ta center -sa center -e 'button1=uncollapse;leaveslave=collapse') &
