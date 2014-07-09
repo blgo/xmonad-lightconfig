@@ -7,7 +7,7 @@ y1="$(echo "$yres-130" | bc -l)"
 x1="$(echo "$xres*3/4"  | bc -l)"
 x2=${x1%.*}
 
-level="$(amixer | grep -A 5 Master | grep "Mono:" | awk '{print$4}' | sed -e 's/\[//'  -e 's/\%//'  -e 's/\]//' -e '1 !d')"
+level="$(amixer | grep -A 5 Master | grep "\%" | sed '1 !p' |  sed 's/.*\[\([0-9]*\)\%\].*/\1/')"
 level2="$(echo "-($level-100)" | bc -l)"
 mute="$(amixer | grep -A 5 Master | grep -o off)"
 

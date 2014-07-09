@@ -8,9 +8,9 @@ x2=${x1%.*}
 
 function audio {
 DZENLINE=()
-DZENLINE[0]="^ca(1, amixer -q set Master unmute & amixer -q set LFE unmute & amixer -q set Master 7%- & amixer -q set PCM 7%- & volume_level $1 ) < ^ca()\n"
-DZENLINE[1]="^ca(1, amixer -q set Master unmute & amixer -q set LFE unmute & amixer -q set Master 7%+ & amixer -q set PCM 7%+ & volume_level $1 ) > ^ca()\n"
-DZENLINE[2]="^ca(1, amixer -q set Master toggle & amixer -q set LFE toggle & volume_level $1 )M ^ca()"
+DZENLINE[0]="^ca(1, amixer  -q set Master unmute & amixer  -q set LFE unmute & amixer  -q set Master 7%- & amixer  -q set PCM 7%- & volume_level $1 ) < ^ca()\n"
+DZENLINE[1]="^ca(1, amixer  -q set Master unmute & amixer  -q set LFE unmute & amixer  -q set Master 7%+ & amixer  -q set PCM 7%+ & volume_level $1 ) > ^ca()\n"
+DZENLINE[2]="^ca(1, amixer  -q set Master toggle & amixer  -q set LFE toggle & volume_level $1 )M ^ca()"
 echo -e "${DZENLINE[*]}"
 }
 audio $system_screen_resolution | dzen2 -w 60 -x $x2 -m h -l 3  -fn lat2-10 -y $yres -slave-name dzene -bg "#224466" -p -sa center -e 'enterslave=exec:volume_level '$system_screen_resolution''
