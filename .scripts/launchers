@@ -21,11 +21,11 @@ DZENLINE[3]="^ca(1, libreoffice ) LibreOffice ^ca()\n"
 DZENLINE[4]="^ca(1, htop_script ) Administrador de Tareas ^ca()\n"
 DZENLINE[5]="^ca(1, urxvt +sb -tr -rv -e wallpaper_random ) Fondo de Pantalla aleatorio ^ca()\n"
 DZENLINE[6]="^ca(1, guvcview) WebCam ^ca()\n"
-DZENLINE[7]="^ca(1, pulseaudio --start; pactl set-card-profile  alsa_card.pci-0000_00_1b.0  output:analog-stereo; xport PULSE_LATENCY_MSEC=60; skype) Skype ^ca()\n"
+DZENLINE[7]="^ca(1, pulseaudio --start; pactl set-card-profile  alsa_card.pci-0000_00_1b.0  output:analog-stereo; xport PULSE_LATENCY_MSEC=60; skype; pulseaudio -k) Skype ^ca()\n"
 DZENLINE[8]="^ca(1, pavucontrol) Propiedades de sonido ^ca()"
 echo -e "${DZENLINE[*]}"
 }
-(applications | dzen2 -x 0 -w "$(factor 5)" -m -l 5 -fn $FONT -y $yres -title-name dzeng  -bg $BG -p -ta center -sa center -e 'button1=uncollapse;leaveslave=collapse') &
+(applications | dzen2 -x 0 -w "$(factor 5)" -m -l 8  -fn $FONT -y $yres -title-name dzeng  -bg $BG -p -ta center -sa center -e 'button1=uncollapse;leaveslave=collapse') &
 
 function launchers {
 DZENLINE=()
